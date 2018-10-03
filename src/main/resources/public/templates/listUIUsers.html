@@ -1,0 +1,83 @@
+<!-- <head>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head> -->
+
+
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<style>
+.btn-sq-sm {
+  width: 35px !important;
+  height: 35px !important;
+}
+
+
+.table-filter tbody tr:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+	</style>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>UI User Details</h2>
+		</div>
+		<div class ="container-fluid"> 
+	<br> 
+			<input class="form-control" id="myInput" type="text" placeholder="Search..">
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody id="myTable">
+						<tr ng-repeat="user in uiUsers">
+							<td style="width: 85%;" ng-click="UserAccessDetail(user)">
+								<div class="media" >
+								 <a href="#" class="pull-left"> <img
+										src="/images/userFace.jpg" class="media-photo">
+									</a>
+									<div class="media-body">
+										<span class="media-meta">Created On:</span>
+										{{user.created |date : 'medium'}} <br />
+										<h4 class="title">{{user.name}}</h4>
+										<h4 class="title">{{user.email}}</h4>
+										<h4 class="title">{{user.teamId}}</h4>
+										<p class="summary">{{user.userType}}</p>
+									</div>
+								  
+								  </div>
+								  </td>
+								 <td style="width: 15%;">
+								  <div class="media-body" ng-if='type === "ADMIN"'> 
+								  	  
+								  	  <a ng-click="UserDetail(user)" class="btn btn-sq-sm btn-primary">
+								             <i class="fa fa-pencil" aria-hidden="true"></i><br/>
+								      </a>
+								      <a ng-click="deleteuser(user)" class="btn btn-sq-sm btn-danger">
+							                 <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i><br/>
+								      </a>   								  
+								  </div>
+								   								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

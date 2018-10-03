@@ -1,0 +1,73 @@
+<style> 
+textarea {
+    width: 50%;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize:true;
+}
+</style>
+<script type="text/javascript">
+    function validateForm()
+    {
+        var a=document.forms["Form"]["rectification"].value;
+        var b=document.forms["Form"]["reason"].value;
+        if (a==null || a=="",b==null || b=="")
+        {
+              return false;
+        }
+        else{
+        	return true;
+        }
+    }
+</script>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>{{incident.id}} Details</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody>
+						<tr ">
+							<td>
+								<div class="media">
+									<a href="#" class="pull-left"> <img
+										src="/images/userFace.jpg" class="media-photo">
+									</a>
+									<div class="media-body">
+										<h4 class="title">{{inc.id}}</h4>
+										<h4 class="title">{{inc.eventName}}</h4>
+										<h4 class="title">{{inc.eventCategory}}</h4>
+										<h4 class="title">{{inc.reportedBy}}</h4>
+										<h4 class="title">{{inc.serviceAttached}}</h4>
+										<h4 class="title">{{inc.downTime}}</h4>
+										<h4 class="title">{{inc.reportedBy}}</h4>		
+									</div>
+									
+									<div class="media-body">
+										<form method="post" name="Form" onsubmit="return validateForm()">
+											<textarea  name="reason" id="r1">Enter Reason...</textarea>
+											<textarea  name="rectification" id="r2">Enter Rectification...</textarea>
+										</form>
+										
+											<input type=submit value="submit"	class="btn btn-danger btn-lg login-button"
+											ng-click="submitValues()">
+																	
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

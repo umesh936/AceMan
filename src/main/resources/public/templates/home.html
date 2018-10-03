@@ -1,0 +1,48 @@
+<link rel="stylesheet" type="text/css" href="/css/home_page_custom.css" />
+<link rel="stylesheet" type="text/css" href="/css/home_page_style.css" />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic'
+	rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="/js/modernizr.custom.79639.js"></script>
+<script src="/js/jquery.swatchbook.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#sb-container').swatchbook({
+			// number of degrees that is between each item
+			angleInc : 30,
+			neighbor : 10,
+			// if it should be closed by default
+			initclosed : true,
+			// index of the element that when clicked, triggers the open/close function
+			// by default there is no such element
+			closeIdx : 5
+		});
+
+	});
+</script>
+<div class="container-fluid">
+	<div class="row ">
+		<section class="main">
+			<div id="sb-container" class="sb-container">
+				<div>
+					<span class="sb-icon icon-mobile"></span>
+					<h4>
+						<span><a href="#/addSshKey">Add Ssh-Key</a></span>
+					</h4>
+				</div>
+				<div>
+					<h4>
+						<span>Settings</span>
+					</h4>
+					<span style="color: white">Click to open/close</span>
+				</div>
+			</div>
+			<!-- sb-container -->
+
+		</section>
+
+
+	</div>
+	<!-- sb-container -->
+</div>
+<!-- row -->

@@ -1,0 +1,11 @@
+************************************************************
+*
+* Some Assumption before running the Hawkeye
+*
+************************************************************
+1. All machines should have 2 groups 
+		- logreader
+		- mettlsupergroup
+2. All key pair name in account should be unique (not per machine).
+3. Key Pair name should be same in database as the name in AWS for any EC2.
+4. Hawkeye client instance should be running the each VPCs.

@@ -1,0 +1,54 @@
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>LDAP User Details</h2>
+		</div>
+	</div>
+	<div> 
+	<br> 
+			<input class="form-control" id="myInput" type="text" placeholder="Search..">
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody id="myTable">
+						<tr ng-repeat="user in ldapUsers">
+							<td>
+								<div class="media">
+									<a href="#" class="pull-left"> <img
+										src="/images/userFace.jpg" class="media-photo">
+									</a>
+									<div class="media-body">
+										<h4 class="title">{{user.uid}}</h4>
+										<h4 class="title">{{user.cn}}</h4>
+										
+										
+										
+									</div>
+									<div class="media-body">
+										<div >
+											<input type=submit	 value="Delete" class="btn btn-danger btn-lg login-button"
+											ng-click="deleteLdapUser()">
+										</div>
+																		
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

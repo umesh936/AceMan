@@ -1,0 +1,67 @@
+<style>
+.table-filter tbody tr:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+</style>
+<div class="container-fluid">
+	<div  class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>Gerrit User Details</h2>
+			<hr />
+		</div>
+		
+		<div class="loader col-md-offset-1" ng-show="isgerritListloading">
+				<div class="preloader">
+					<div class="spinner-layer pl-red">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+				</div>
+				<p>Please wait...</p>
+	</div>
+	
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody>
+						<tr ng-repeat="user in gerritUsers">
+							<td style="width: 85%;">
+								<div class="media">
+									<a href="#" class="pull-left"> <img
+										src="/images/userFace.jpg" class="media-photo">
+									</a>
+									<div class="media-body">
+										<h4 class="title">{{user.id}}</h4>
+										<h4 class="title">{{user.name}}</h4>
+										<h4 class="title">{{user.email}}</h4>
+										<h4 class="title">{{user.username}}</h4>
+									
+									</div>
+								</div>
+							</td>
+							<td style="width: 15%;">
+									<div class="media-body">
+										<div ng-if="user.isActive">
+											<input type=submit	 value="Deactivate" class="btn btn-success btn-lg login-button"
+											ng-click="makeGerritUserDeactive(user)">
+										</div>
+										<div ng-if="!user.isActive">
+											<input type=submit value="Activate"	class="btn btn-danger btn-lg login-button"
+											ng-click="makeGerritUserActive(user)">
+										</div>								
+									</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

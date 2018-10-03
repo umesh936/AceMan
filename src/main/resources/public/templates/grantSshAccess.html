@@ -1,0 +1,157 @@
+<style>
+.main-login {
+	background-color: #fff;
+	/* shadows and rounded borders */
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.form-control {
+	height: auto !important;
+	padding: 8px 12px !important;
+}
+
+.input-group {
+	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
+	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.21) !important;
+}
+
+#button {
+	border: 1px solid #ccc;
+	margin-top: 28px;
+	padding: 6px 12px;
+	color: #666;
+	text-shadow: 0 1px #fff;
+	cursor: pointer;
+	-moz-border-radius: 3px 3px;
+	-webkit-border-radius: 3px 3px;
+	border-radius: 3px 3px;
+	-moz-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+	-webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+	box-shadow: 0 1px #fff inset, 0 1px #ddd;
+	background: #f5f5f5;
+	background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5),
+		color-stop(100%, #eeeeee));
+	background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+	background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+	background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+	background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5',
+		endColorstr='#eeeeee', GradientType=0);
+}
+
+.main-center {
+	margin-top: 30px;
+	margin: 0 auto;
+	max-width: 400px;
+	padding: 10px 40px;
+	background: #d1ffd1;
+	color: #FFF;
+	text-shadow: none;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+}
+</style>
+
+
+<div class="container-fluid" ng-show="showAccessForm">
+	<div class="row ">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>Grant Access to Machine - {{Iname}}</h2>
+			
+			<hr />
+		</div>
+	</div>
+	<div class="row col-md-offset-1">
+		<div class=" main-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<form>
+				<div class="input-group"  style="width:75%; color:#666666">
+						Group :
+						<select ng-model="grpname">
+							<option selected disabled value="">Select Group</option>
+							<option value="mettlsupergroup">mettlsupergroup</option>
+							<option value="logreader">logreader</option>
+						</select>
+					
+				</div>
+				<div class="input-group"  style="width:75%;color:#666666">
+						User: 
+						<select ng-model="accessUserSelected">
+							<option selected disabled value="">Select Users</option>
+							<option ng-repeat="user in newUsersList" value="{{user.id}}">{{user.name}}</option>
+						</select>
+					
+				</div>
+				
+				<div class="input-group"  style="width:75%;color:#666666">
+					<div class="cols-sm-10">
+					 No of days: 
+						<select ng-model="noOfDays">
+							<option selected disabled value="">Select no of days </option>
+							<option ng-repeat="day in Dayslist" value="{{day}}">{{day}}</option>
+						</select>
+					</div>
+				</div>
+						<input type="submit" value="Grant Access"
+						class="btn btn-primary btn-lg btn-block login-button" ng-click="grantAccessToUser()">
+			</form>
+			<br> 
+		</div>
+		<br>
+	</div>
+	<br>
+</div>
+
+<div class="container-fluid" ng-show="showListofAccessableUsers">
+	<div class="row">
+		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+			<h2>User Details</h2>
+		</div>
+		
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 m-t-25" ng-show="showAddButton">
+		<button class ="btn btn-primary btn-block login-button" ng-click="showform()">Add User</button>
+</div>
+	</div>
+	<div ng-show="shownullmessage">	
+		<h3>No any Access has access to this machine click on Add user button above to give Access</h3>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody>
+						<tr ng-repeat="user in sshUsersList">
+							<td style="width: 85%;">
+								<div class="media">
+									<a href="#" class="pull-left"> <img
+										src="/images/userFace.jpg" class="media-photo">
+									</a>
+									<div class="media-body">
+										<span class="media-meta pull-left">Created On:</span>
+										{{user.created | date : 'medium'}} <br />
+										<h4 class="title">{{user.name}}</h4>
+										<h4 class="title">{{user.email}}</h4>
+										<h4 class="title">Team id: {{user.teamId}}</h4>
+										<h4 class="title">User id: {{user.id}}</h4>
+										<p class="summary">Role: {{user.userType}}</p>
+									</div>
+								</div>
+							</td>
+							<td style="width: 15%;">
+								<button class ="btn btn-primary login-button" ng-click="revokeAccess(user.id)">Delete access</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+	</div>
+</div>

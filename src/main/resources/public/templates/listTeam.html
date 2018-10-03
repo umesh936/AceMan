@@ -1,0 +1,205 @@
+<style>
+/* body {
+	font-family: 'Open Sans', sans-serif;
+	color: #353535;
+} */
+.content h1 {
+	text-align: center;
+}
+
+.content .content-footer p {
+	color: #6d6d6d;
+	font-size: 12px;
+	text-align: center;
+}
+
+.content .content-footer p a {
+	color: inherit;
+	font-weight: bold;
+}
+
+/*	--------------------------------------------------
+	:: Table Filter
+	-------------------------------------------------- */
+.panel {
+	border: 1px solid #ddd;
+	background-color: #fcfcfc;
+}
+
+.panel .btn-group {
+	margin: 15px 0 30px;
+}
+
+.panel .btn-group .btn {
+	transition: background-color .3s ease;
+}
+
+.table-filter {
+	background-color: #fff;
+	border-bottom: 1px solid #eee;
+}
+
+.table-filter tbody tr > td:first-child:hover{
+	cursor: pointer;
+	background-color: #eee;
+}
+
+.table-filter tbody tr td {
+	padding: 10px;
+	vertical-align: middle;
+	border-top-color: #eee;
+}
+
+.table-filter tbody tr.selected td {
+	background-color: #eee;
+}
+
+.table-filter tr td:first-child {
+	width: 38px;
+}
+
+.table-filter tr td:nth-child(2) {
+	width: 35px;
+}
+
+.ckbox {
+	position: relative;
+}
+
+.ckbox input[type="checkbox"] {
+	opacity: 0;
+}
+
+.ckbox label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+
+.table-filter .star {
+	color: #ccc;
+	text-align: center;
+	display: block;
+}
+
+.table-filter .star.star-checked {
+	color: #F0AD4E;
+}
+
+.table-filter .star:hover {
+	color: #ccc;
+}
+
+.table-filter .star.star-checked:hover {
+	color: #F0AD4E;
+}
+
+.table-filter .media-photo {
+	width: 75px;
+}
+
+.table-filter .media-body {
+	
+	/* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+}
+
+.table-filter .media-meta {
+	font-size: 11px;
+	color: #999;
+}
+
+.table-filter .media .title {
+	color: #2BBCDE;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: normal;
+	margin: 0;
+}
+
+.table-filter .media .title span {
+	font-size: .8em;
+	margin-right: 20px;
+}
+
+.table-filter .media .title span.pagado {
+	color: #5cb85c;
+}
+
+.table-filter .media .title span.pendiente {
+	color: #f0ad4e;
+}
+
+.table-filter .media .title span.cancelado {
+	color: #d9534f;
+}
+
+.table-filter .media .summary {
+	font-size: 14px;
+}
+</style>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>Configured Teams List</h2>
+		</div>
+	</div>
+	<br>	
+		<input class="form-control"  type="text" ng-model="searchAll" placeholder="Search..."> 
+	<br>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="loader" ng-show="isTeamloading">
+				<div class="preloader">
+					<div class="spinner-layer pl-red">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+				</div>
+				<p>Please wait...</p>
+			</div>
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody>
+						<tr ng-repeat="team in teams|filter:searchAll">
+							<td ng-click="selectItem(team.id,team.teamName)" style="width: 85%;">
+								<div class="media" >
+									<div  class="pull-left"> <img
+										src="/images/team_b.png" class="media-photo">
+									</div>
+									<div class="media-body">
+									<h4 class="title">{{team.teamName}}</h4>
+									<span class="media-meta pull-left">Created On:</span>
+										{{team.createdOn| date : 'medium'}}
+									<h4 >Team Size:{{team.teamSize}} </h4>
+								<p class="summary">{{team.description}}</p>
+									</div>
+								</div>
+							</td>
+							
+							
+							<td style="width: 15%;">
+									<div class="media-body" >
+									 	<div ng-show=" loggedinUserTeamid == team.id ">
+											<h4> Your Team</h4>
+										</div>
+										<div ng-show="utype =='ADMIN'">
+												<button  class ="btn btn-success" ng-click="deleteTeam(team.id,team.teamName)">Delete Team </button>
+										</div>
+									</div>
+								</td>
+							
+							
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

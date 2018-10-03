@@ -1,0 +1,34 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2> UI User Details </h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody>
+						<tr ng-repeat="user in userlist">
+							<td>
+								<div class="media">
+									<a href="#" class="pull-left"> <img
+										src="/images/userFace.jpg" class="media-photo">
+									</a>
+									<div class="media-body">
+										<span class="media-meta pull-left">Created On:</span>
+										{{user.created}} <br />
+										<h4 class="title">{{user.user}}</h4>
+										<h4 class="title">{{user.email}}</h4>
+										<h4 class="title">{{user.teamId}}</h4>
+										<p class="summary">{{user.userType}}</p>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

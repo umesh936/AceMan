@@ -1,0 +1,65 @@
+<style> 
+textarea {
+    width: 400px;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize:true;
+}
+.previous  tbody tr > td:first-child:hover{
+	cursor: pointer;
+	background-color: #eee;
+}
+
+.btn-1 
+{
+	cursor: pointer;
+	background-color: #eee;
+
+}
+tr:nth-child(even) {background: #ecf4f3}
+tr:nth-child(odd) {background: #fdfdc4}
+</style>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>Audit Details</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody>
+					<tr>
+						<th>Date</th>
+						<th>Action</th>
+						<th>description </th>
+					</tr>
+						<tr ng-repeat="log in auditEventlist | orderBy : '-eventDate'">
+						
+							<td>{{log.eventDate | date : 'medium'}}</td>
+							<td>{{log.action}}</td>
+							<td>{{log.description}}</td>
+						
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div >
+	<!--  -->
+	 <ul class="pager" >
+    <li class="btn-1" type="submit" ng-if="page > 0" class="previous"><a type="submit" ng-click="fetchprev()"> <-Previous</a></li>
+    <li class="btn-1" type="submit" ng-if="size == 10" class="next"><a  type="submit" ng-click="fetchnext()" >Next-> </a></li>
+  </ul>
+	</div>
+	
+</div>

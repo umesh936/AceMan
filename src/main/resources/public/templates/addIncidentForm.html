@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <h2>Add New Incident </h2>
+  <form name="addForm" class="form-horizontal">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="incidentId">Incident ID:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-minlength="1" ng-required="true" ng-model="incidentId" id="incidentId" placeholder=" Enter Incident Id" name="incidentName">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="incidentName">Incident Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-minlength="1" ng-required="true" ng-model="incidentName" id="incidentName" placeholder=" Enter Incident Name" name="incidentName">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="incidentCategory">Incident Category:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-minlength="1" ng-required="true" ng-model="incidentCategory" id="incidentCategory" placeholder="Enter Incident Category" name="incidentCategory">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="serviceAttached">Service Attached:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-minlength="1" ng-required="true" ng-model="serviceAttached" id="serviceAttached" placeholder=" Enter Service attached" name="serviceAttached">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="reportedBy">Reported By:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-minlength="1" ng-required="true" ng-model="reportedBy" id="reportedBy" placeholder=" Enter Reported By" name="reportedBy">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="incidentTime">Incident Time:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-minlength="1" ng-required="true" ng-model="incidentTime" id="incidentTime" placeholder="Enter Incident Time" name="incidentTime">
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="incidentDowntime">Incident Downtime:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-minlength="1" ng-required="true" ng-model="incidentDowntime" id="incidentDowntime" placeholder="Enter Incident Down Time" name="incidentDowntime">
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="reportedTime">Reported Time:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="reportedTime" ng-minlength="1" ng-required="true" id="reportedTime" placeholder="Enter Reported Time" name="reportedTime">
+      </div>
+    </div>
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-sucess" ng-disabled="addForm.$invalid" ng-click="saveNewIncident()">Submit</button>
+      </div>
+    </div>
+    
+    <div class="col-lg-8 col-sm-8 col-xs-8 alert alert-success" ng-show="successMessagebool ">
+        <strong>{{successMessage }}</strong>
+</div>
+  </form>
+</div>

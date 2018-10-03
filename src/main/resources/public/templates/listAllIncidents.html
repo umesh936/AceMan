@@ -1,0 +1,117 @@
+<style> 
+textarea {
+    width: 400px;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize:true;
+}
+
+</style>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>Incident Details</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="table-container" style="overflow: hidden">
+				<table class="table table-filter">
+					<tbody>
+						<tr ng-repeat="inc in incident">
+							<td >
+								
+								<div class="media">
+									<a href="#" class="pull-left"> <img
+										src="/images/event1.png" class="media-photo">
+									</a>
+									<div class="media-body">
+										{{$index}}
+										<h4 class="title">Incident Name: {{inc.incidentName}}</h4>
+										<h4 class="title">Incident Time: {{inc.incidentTime}}</h4>
+										<h4 class="title">Incident category: {{inc.incidentCategory}}</h4>
+										<h4 class="title">Incident Reported by: {{inc.reportedBy}}</h4>	
+									</div>
+									<div class="media-body">
+										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="{{'#myModal'+$index}}">Details</button>
+										
+											 <!-- Modal -->
+										  <div class="modal fade" id="{{'myModal'+$index}}" role="dialog">
+										    <div class="modal-dialog">
+										    
+										      <!-- Modal content-->
+										      <div class="modal-content">
+										        <div class="modal-header">
+										          <button type="button" class="close" data-dismiss="modal">&times;</button>
+										          <h2 class="modal-title" style="color:'blue'">{{inc.incidentName}} Details</h2>
+										        </div>
+										        <div class="modal-body">
+										        <div class="col-sm-3 col-md-3 col-lg-3">
+										        <a href="#" class="pull-left"> <img src="/images/event1.png" class="media-photo"> </a>
+										        </div>
+										        <div name ="details"class ="col-sm-9 col-md-9 col-lg-9"> 
+										        	
+										        	<h4 class="title">Incident Id:        {{inc.incidentId}}</h4>
+													<h4 class="title">Incident Name:         {{inc.incidentName}}</h4>
+													<h4 class="title">Incident Category:     {{inc.incidentCategory}}</h4>
+													<h4 class="title">Reported By:        {{inc.reportedBy}}</h4>
+													<h4 class="title">Service Attached:   {{inc.serviceAttached}}</h4>
+													<h4 class="title">Down Time:          {{inc.incidentDowntime}}</h4>
+													<h4 class="title">Incident Time:      {{inc.incidentTime}}</h4>
+													<h4 class="title">Reported Time:      {{inc.reportedTime}}</h4>
+													
+													<form name="addreasonForm" class="form-horizontal">
+													<div class="form-group">
+												      <label class="control-label col-sm-2" for="reason">Reason:</label>
+												      <div class="col-sm-10">
+												        <textarea type="text" class="form-control" ng-model="inc.reason" ng-minlength="1" ng-required="true" id="reason" placeholder="Enter Reason" name="reason"></textarea>
+												      </div>
+												    </div>
+												    <div class="form-group">
+												      <label class="control-label col-sm-2" for="rectification">Rectification:</label>
+												      <div class="col-sm-10">
+												        <textarea type="text" class="form-control" ng-model="inc.rectification" ng-minlength="1" ng-required="true" id="reason" placeholder="Enter Rectification" name="reason"></textarea>
+												      </div>
+												    </div>
+													<div class="form-group">        
+		     											 <div class="col-sm-offset-2 col-sm-10">
+													   		 <button type="submit" class="btn btn-success" ng-disabled="addreasonForm.$invalid" data-dismiss="modal" ng-click="submitReason($index)">Submit</button>
+													     </div>
+													   </div>
+													   <br><br>
+													   <div class="col-lg-8 col-sm-8 col-xs-8 alert alert-success" ng-show="successMessagebool ">
+      														  <strong>{{successMessage }}</strong>
+													</form>									
+										        </div>
+											        				
+										        </div>
+										        <div class="modal-footer">
+										          
+										        </div>
+										      </div>
+										      
+										    </div>
+										  </div>																
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div >
+	 <ul class="pager">
+    <li type="submit" ng-if="page > 0" class="previous"><a type="submit" ng-click="fetchprev()">Previous</a></li>
+    <li type="submit" class="next"><a  type="submit" ng-click="fetchnext()" >Next</a></li>
+  </ul>
+	</div>
+	
+</div>
